@@ -9,6 +9,7 @@ const Product = require('../models/product');
 router.get('/', (req, res, next) => {
     Order.find() //finds all order
         .select('quantity _id product')
+        .populate('product')
         .exec() // turns it in to a real promise
         .then(docs => {
             res.status(201).json({
